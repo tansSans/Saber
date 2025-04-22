@@ -1,0 +1,495 @@
+<html>
+  <head>
+    <title>Project 3: Website</title>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kode+Mono:wght@400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+      * {
+        margin: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      .navbar {
+        overflow: hidden;
+        background-color: #fff2ac;
+        border-bottom: 1px solid #021024;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .navbar a {
+        float: left;
+        color: #978062;
+        text-align: center;
+        padding: 14px 16px;
+        font-size: 15px;
+        text-decoration: none;
+      }
+
+      .navbar a:hover {
+        color: #978062;
+      }
+
+      .navbar a::after {
+        content: "";
+        display: block;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.1rem solid #978062;
+        transform: scaleX(0);
+        transition: 0.2s linear;
+      }
+
+      .navbar a:hover::after {
+        transform: scaleX(0.5);
+      }
+
+      .navbar a.active {
+        background-color: #978062;
+        color: #fff2ac;
+      }
+
+      .grid {
+        text-align: center;
+      }
+
+      .img {
+        margin-top: 89px;
+        margin-left: auto;
+        margin-left: auto;
+        border-radius: 2%;
+        margin-bottom: 50px;
+        margin: 100px 50px;
+        border: 1px solid black;
+      }
+
+      #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+      }
+
+      .modal-content {
+        margin: auto;
+        width: 80%;
+        max-width: 700px;
+      }
+
+      #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+      }
+
+      .modal-content,
+      #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+      }
+
+      @-webkit-keyframes zoom {
+        from {
+          -webkit-transform: scale(0);
+        }
+        to {
+          -webkit-transform: scale(1);
+        }
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .cover .judul {
+        font-size: 1.5em;
+        margin-left: 30px;
+        margin-top: 350px;
+        padding: 20px;
+        margin-bottom: 250px;
+      }
+
+      .cover2 {
+        padding: 8rem 15% 0.5rem;
+        background-color: #978062;
+        min-height: 400px;
+      }
+
+      .cover2 h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 50px;
+      }
+
+      .cover2 p {
+        margin-top: 50px;
+        text-align: justify;
+      }
+
+      .cover2 p span {
+        color: #fff2ac;
+      }
+
+      .cover2 .row {
+        display: flex;
+      }
+
+      .cover3 {
+        padding: 8rem 15% 0.5rem;
+        background-color: #fff;
+        min-height: 400px;
+      }
+
+      .cover3 h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 50px;
+      }
+
+      .cover3 p {
+        margin-top: 50px;
+        text-align: justify;
+      }
+
+      .cover3 .row {
+        display: flex;
+      }
+
+      .cover3 p span {
+        color: grey;
+      }
+
+      .cover4 {
+        padding: 8rem 15% 0.5rem;
+        background-color: #978062;
+        min-height: 400px;
+      }
+
+      .cover4 h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 50px;
+      }
+
+      .cover4 p span {
+        color: #fff2ac;
+      }
+
+      .cover4 p {
+        margin-top: 50px;
+        text-align: justify;
+      }
+
+      .cover4 .row {
+        display: flex;
+      }
+
+      .cover5 {
+        padding: 8rem 15% 0.5rem;
+        background-color: #fff;
+        min-height: 400px;
+      }
+
+      .cover5 h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 50px;
+      }
+
+      .cover5 p {
+        margin-top: 50px;
+        text-align: justify;
+      }
+
+      .cover5 .row {
+        display: flex;
+      }
+
+      .cover5 p span {
+        color: grey;
+      }
+
+      .cover6 {
+        background-color: #978062;
+        color: #fff2ac;
+        text-align: center;
+        padding: 20px 0;
+        text-decoration: none;
+      }
+
+      .cover6 a {
+        color: #fff2ac;
+        text-decoration: none;
+        padding: 0 1%;
+      }
+
+      .cover6 .medsos {
+        margin-top: 20px;
+      }
+
+      .cover6 .nav {
+        padding: 20px 0;
+      }
+
+      @media screen and (max-width: 650px) {
+        .grid {
+          display: flex;
+          justify-content: center;
+          float: none;
+          width: 80%;
+          margin-left: 50px;
+        }
+
+        .img {
+          margin: 80px 5px;
+        }
+
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          float: none;
+          width: 80%;
+          margin-left: 50px;
+        }
+
+        img {
+          width: 80%;
+        }
+
+        p {
+          margin-right: 20px;
+        }
+
+        .cover2 p {
+          margin-bottom: 150px;
+        }
+
+        .cover4 p {
+          margin-bottom: 150px;
+        }
+
+        .cover3 img {
+          margin-bottom: 150px;
+        }
+
+        .cover5 img {
+          margin-bottom: 150px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a class="active" href="./Saber.html">Home</a>
+      <a>Project 3: Website </a>
+    </nav>
+
+    <div class="cover" id="1">
+      <div class="grid">
+        <img
+          src="./Gambar/logo3.jpg"
+          style="width: 28%"
+          class="img"
+          id="myImg"
+        />
+        <img src="./Gambar/SW.jpg" style="width: 50%" class="img" />
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img src="./Gambar/logo3.jpg" alt="The Logo" style="width: 50%" />
+      <div id="caption"><a>The Logo</a></div>
+    </div>
+
+    <div class="cover2" id="2">
+      <h1>Coding Application</h1>
+
+      <div class="row">
+        <img src="./Gambar/VSCode.png" class="img2" width="20%" />
+
+        <p>
+          Visual Studio Code (VS Code) adalah editor kode sumber yang ringan
+          namun kuat, dikembangkan oleh Microsoft. Berikut adalah beberapa fitur
+          dan karakteristik utamanya, Antarmuka Pengguna yang Intuitif, Dukungan
+          Multibahasa, Extensions, Debugging, Kontrol Versi, Terminal
+          Terintegrasi, Dukungan Remote Development, dan Kustomisasi
+          <br /><br /><span>
+            VS Code sangat populer di kalangan pengembang karena kombinasi
+            kecepatan, fleksibilitas, dan fungsionalitas yang ditawarkannya,
+            menjadikannya pilihan utama untuk pengembangan perangkat lunak
+            modern.
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="cover3" id="3">
+      <h1>Domain Used</h1>
+
+      <div class="row">
+        <p>
+          Domain GitHub merujuk pada platform layanan hosting untuk repositori
+          kode sumber yang menggunakan sistem kontrol versi Git. GitHub
+          memungkinkan pengembang untuk menyimpan, mengelola, dan berkolaborasi
+          dalam proyek perangkat lunak. Berikut adalah beberapa fitur utama
+          GitHub, Repositori, Kontrol Versi, Kolaborasi, Issues, GitHub Actions,
+          Wiki dan Dokumentasi, Integrasi dan Ekstensi, dan GitHub Pages.
+          <br /><br /><span>
+            GitHub sangat populer di kalangan pengembang perangkat lunak dan
+            komunitas open source karena kemudahan penggunaan, fitur kolaborasi
+            yang kuat, dan kemampuan untuk menyimpan kode secara aman.
+          </span>
+        </p>
+
+        <img src="./Gambar/GitHub.png" class="img2" width="20%" />
+      </div>
+    </div>
+
+    <div class="cover4" id="4">
+      <h1>The Visual Presented.</h1>
+
+      <div class="row">
+        <img src="./Gambar/visual.png" class="img2" width="20%" />
+
+        <p>
+          Visual website untuk mempromosikan profil perusahaan sangat penting
+          untuk menciptakan kesan pertama yang positif dan menarik perhatian
+          pengunjung.
+          <br /><br /><span>
+            Berikut adalah elemen-elemen kunci yang kami pertimbangkan, Desain
+            yang Bersih dan Profesional, Logo dan Branding, Navigasi yang Jelas,
+            Visual yang Menarik, Call to Action (CTA), Testimoni dan Portofolio,
+            Responsivitas, dan Informasi Kontak yang Mudah Diakses.
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="cover5" id="5">
+      <h1>Programming language</h1>
+
+      <div class="row">
+        <p>
+          HTML, CSS, dan JavaScript adalah tiga teknologi utama yang digunakan
+          dalam pengembangan web. HTML (HyperText Markup Language): HTML adalah
+          bahasa markup yang digunakan untuk membuat struktur halaman web. CSS
+          (Cascading Style Sheets) digunakan untuk mengatur tampilan dan layout
+          halaman web. Dengan CSS, pengembang dapat menambahkan gaya, seperti
+          warna, font, dan spacing, serta mengatur tata letak elemen-elemen
+          HTML. JavaScript adalah bahasa pemrograman yang memungkinkan
+          pengembang untuk menambahkan interaktivitas dan dinamika pada halaman
+          web.
+          <br /><br /><span>
+            Ketiga teknologi ini bekerja sama untuk menciptakan pengalaman
+            pengguna yang kaya dan interaktif di web.
+          </span>
+        </p>
+
+        <img src="./Gambar/coding.png" class="img2" width="20%" />
+      </div>
+    </div>
+
+    <footer class="cover6">
+      <h3 class="judul5">Follow Us</h3>
+
+      <div class="medsos">
+        <a href="#"><i data-feather="facebook"></i></a>
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+      </div>
+
+      <div class="nav">
+        <a href="">FAQs</a>
+      </div>
+
+      <p class="p3">Created by: Sultan Rizky Akbar | &copy; 2024</p>
+    </footer>
+
+    <script>
+      feather.replace();
+    </script>
+
+    <script>
+      var modal = document.getElementById("myModal");
+      var img = document.getElementById("myImg");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+      };
+
+      var span = document.getElementsByClassName("close")[0];
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+    </script>
+  </body>
+</html>
